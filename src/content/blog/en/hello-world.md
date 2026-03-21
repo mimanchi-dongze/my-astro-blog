@@ -1,7 +1,8 @@
 ---
 title: 'Hello World'
 description: 'Starting my personal blog journey to document growth and share insights.'
-pubDate: '2026-03-21'
+pubDate: '2026-03-21T09:00:00+08:00'
+publishedAt: '2026-03-21T09:00:00+08:00'
 tags: ['blogging', 'introduction', 'learning']
 ---
 

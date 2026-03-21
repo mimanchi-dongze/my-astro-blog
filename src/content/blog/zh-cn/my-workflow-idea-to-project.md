@@ -1,7 +1,8 @@
 ---
 title: '《我的学习/开发工作流：如何把一个想法变成可发布项目》'
 description: '分享我个人的一套从灵感捕捉到项目上线的完整工作流，涵盖需求分析、技术选型、迭代开发及最终发布的实战经验。'
-pubDate: '2026-03-21'
+pubDate: '2026-03-21T16:05:00+08:00'
+publishedAt: '2026-03-21T16:05:00+08:00'
 tags: ['workflow', 'productivity', 'development', 'project-management', 'learning']
 ---
 

@@ -1,7 +1,8 @@
 ---
 title: '项目启动：我的个人博客'
 description: '为什么我选择 Astro 来构建我的个人博客，以及我的技术选型思路。'
-pubDate: '2026-03-21'
+pubDate: '2026-03-21T10:15:00+08:00'
+publishedAt: '2026-03-21T10:15:00+08:00'
 tags: ['astro', 'planning', 'blogging']
 ---
 

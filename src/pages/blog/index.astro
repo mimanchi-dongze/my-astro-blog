@@ -10,11 +10,13 @@ import { useTranslatedPath } from '../../i18n/utils';
 
 const lang = 'zh-cn';
 const translatePath = useTranslatedPath(lang);
+const getPublishedTime = (publishedAt: string, pubDate: Date) => {
+	const publishedAtTime = new Date(publishedAt).valueOf();
+	return Number.isNaN(publishedAtTime) ? pubDate.valueOf() : publishedAtTime;
+};
 const posts = (await getCollection('blog'))
 	.filter((post) => post.id.startsWith(`${lang}/`))
-	.sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-	);
+	.sort((a, b) => getPublishedTime(b.data.publishedAt, b.data.pubDate) - getPublishedTime(a.data.publishedAt, a.data.pubDate));
 
 const tags = [...new Set(posts.flatMap((post) => post.data.tags || []))].sort();
 ---
@@ -254,7 +256,7 @@ const tags = [...new Set(posts.flatMap((post) => post.data.tags || []))].sort();
 							posts.map((post) => {
 								const slug = post.id.slice(lang.length + 1);
 								return (
-									<li class="post-item" data-tags={(post.data.tags || []).join(',')} data-date={post.data.pubDate.toISOString()}>
+									<li class="post-item" data-tags={(post.data.tags || []).join(',')} data-date={post.data.publishedAt || post.data.pubDate.toISOString()}>
 										<a class="post-link" href={translatePath(`/blog/${slug}/`)}>
 											{post.data.heroImage && (
 												<Image width={720} height={360} src={post.data.heroImage} alt="" />
@@ -262,7 +264,7 @@ const tags = [...new Set(posts.flatMap((post) => post.data.tags || []))].sort();
 											<div class="content">
 												<h4 class="title">{post.data.title}</h4>
 												<p class="date">
-													<FormattedDate date={post.data.pubDate} />
+													<FormattedDate date={post.data.publishedAt || post.data.pubDate} />
 												</p>
 											</div>
 										</a>

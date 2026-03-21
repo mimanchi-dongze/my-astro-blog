@@ -6,9 +6,14 @@ import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
+const getPublishedTime = (publishedAt: string, pubDate: Date) => {
+	const publishedAtTime = new Date(publishedAt).valueOf();
+	return Number.isNaN(publishedAtTime) ? pubDate.valueOf() : publishedAtTime;
+};
+
 const posts = (await getCollection('blog'))
 	.filter((post) => post.id.startsWith('zh-cn/'))
-	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.sort((a, b) => getPublishedTime(b.data.publishedAt, b.data.pubDate) - getPublishedTime(a.data.publishedAt, a.data.pubDate))
 	.slice(0, 3);
 ---
 
@@ -58,7 +63,7 @@ const posts = (await getCollection('blog'))
 							<li>
 								<a class="post-link" href={`blog/${slug}/`}>
 									<h3>{post.data.title}</h3>
-									<p class="meta"><FormattedDate date={post.data.pubDate} /></p>
+									<p class="meta"><FormattedDate date={post.data.publishedAt || post.data.pubDate} /></p>
 								</a>
 							</li>
 						);

@@ -1,7 +1,8 @@
 ---
 title: '从创建到上线：这次博客项目的完整复盘'
 description: '记录我把 Astro 博客从零搭建到完整上线，并逐步解决 404、评论失效和部署警告问题的全过程。'
-pubDate: '2026-03-21'
+pubDate: '2026-03-21T15:20:00+08:00'
+publishedAt: '2026-03-21T15:20:00+08:00'
 tags: ['astro', 'deployment', 'debugging', 'retrospective', 'learning', 'i18n']
 ---
 

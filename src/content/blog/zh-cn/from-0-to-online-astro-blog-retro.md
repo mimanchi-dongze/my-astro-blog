@@ -1,7 +1,8 @@
 ---
 title: '《从 0 到上线：我的 Astro 博客搭建与踩坑复盘》'
 description: '记录我从零开始搭建 Astro 博客，并解决多语言、搜索、评论及部署问题的全过程。'
-pubDate: '2026-03-21'
+pubDate: '2026-03-21T14:10:00+08:00'
+publishedAt: '2026-03-21T14:10:00+08:00'
 tags: ['astro', 'blogging', 'i18n', 'deployment', 'debugging']
 ---
 

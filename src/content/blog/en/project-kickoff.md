@@ -1,7 +1,8 @@
 ---
 title: 'Project Kickoff: My Personal Blog'
 description: 'Why I chose Astro for my personal blog and my technical decision-making process.'
-pubDate: '2026-03-21'
+pubDate: '2026-03-21T10:15:00+08:00'
+publishedAt: '2026-03-21T10:15:00+08:00'
 tags: ['astro', 'planning', 'blogging']
 ---
 

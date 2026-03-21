@@ -1,7 +1,8 @@
 ---
 title: '你好，世界'
 description: '开启我的个人博客之旅，记录技术成长与生活点滴。'
-pubDate: '2026-03-21'
+pubDate: '2026-03-21T09:00:00+08:00'
+publishedAt: '2026-03-21T09:00:00+08:00'
 tags: ['blogging', 'introduction', 'learning']
 ---
 

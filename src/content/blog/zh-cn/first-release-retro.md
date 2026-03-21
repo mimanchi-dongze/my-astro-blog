@@ -1,7 +1,8 @@
 ---
 title: '首个版本发布回顾'
 description: '回顾博客首个版本的开发过程，总结经验与不足。'
-pubDate: '2026-03-21'
+pubDate: '2026-03-21T11:30:00+08:00'
+publishedAt: '2026-03-21T11:30:00+08:00'
 tags: ['astro', 'i18n', 'retrospective', 'performance']
 ---
 

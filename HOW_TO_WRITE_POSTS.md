@@ -25,7 +25,8 @@
 ---
 title: '文章标题'
 description: '文章的简短描述，将显示在列表页和 SEO 中'
-pubDate: '2026-03-21'
+publishedAt: '2026-03-21T14:30:00+08:00' # 精确发布时间（带时区）
+pubDate: '2026-03-21' # 发布日期（兼容性保留）
 heroImage: '../../../assets/blog-placeholder-1.jpg' # 封面图路径
 tags: ['astro', 'blog', 'tutorial'] # 标签列表
 ---
@@ -34,7 +35,10 @@ tags: ['astro', 'blog', 'tutorial'] # 标签列表
 ### 字段说明：
 - `title`: 文章的标题。
 - `description`: 文章的简短摘要。
-- `pubDate`: 发布日期，格式为 `YYYY-MM-DD`。
+- `publishedAt`: **（必填）** 精确发布时间，使用 ISO 8601 格式并包含时区偏移（例如 `+08:00`）。
+  - **作用**：系统使用此字段进行**分钟级排序**（最新/最早）和页面上的日期显示。
+  - **注意**：如果缺失或格式错误，内容验证将失败。
+- `pubDate`: **（必填）** 发布日期，格式为 `YYYY-MM-DD`。主要用于系统兼容性。
 - `heroImage`: 文章的封面图。
 - `tags`: **（推荐）** 标签列表。
   - **命名规范**：仅限小写字母、数字和连字符（例如 `react-hooks`, `web3`）。
@@ -78,7 +82,8 @@ tags: ['astro', 'blog', 'tutorial'] # 标签列表
    - 中文文章：`http://localhost:4321/my-astro-blog/blog/your-post-slug`
    - 英文文章：`http://localhost:4321/my-astro-blog/en/blog/your-post-slug`
 2. **发布前检查清单**：
-   - [ ] 检查 Frontmatter 是否包含 `title`, `description`, `pubDate`, `tags`。
+   - [ ] 检查 Frontmatter 是否包含 `title`, `description`, `publishedAt`, `pubDate`, `tags`。
+   - [ ] 确保 `publishedAt` 格式正确（包含时区偏移，如 `+08:00`），否则构建将失败。
    - [ ] 确保 `tags` 仅包含小写字母、数字和连字符。
    - [ ] 检查图片路径是否正确。
    - [ ] 运行 `npm run build` 确保项目可以成功构建。
