@@ -72,6 +72,7 @@ const posts = (await getCollection('blog'))
 
 <style>
 	main {
+		width: 100%;
 		max-width: 980px;
 		margin: 0 auto;
 		padding: 2rem 1rem 3.5rem;
@@ -215,6 +216,37 @@ const posts = (await getCollection('blog'))
 
 		.hero {
 			padding: 1.4rem;
+		}
+	}
+
+	@media (max-width: 430px) {
+		.hero {
+			padding: 1.2rem;
+			border-radius: 12px;
+		}
+		h1 {
+			font-size: 1.8rem;
+		}
+		.cta-group {
+			flex-direction: column;
+			gap: 0.6rem;
+		}
+		.btn {
+			text-align: center;
+			min-height: 44px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		.focus-grid article {
+			padding: 0.85rem;
+		}
+		.latest {
+			padding: 0.85rem;
+		}
+		.post-link {
+			padding: 0.6rem;
+			min-height: 44px;
 		}
 	}
 </style>

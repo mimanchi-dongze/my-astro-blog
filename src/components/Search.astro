@@ -221,4 +221,18 @@ const tags = [...new Set(posts.flatMap((post) => post.data.tags || []))].sort();
       padding: 1rem;
     }
   }
+
+  @media (max-width: 430px) {
+    .quick-tag-btn {
+      padding: 0.4rem 0.8rem;
+      min-height: 40px;
+      font-size: 0.85rem;
+    }
+    .search-container {
+      --pagefind-ui-scale: 0.9;
+    }
+    .search-container .pagefind-ui__result {
+      padding: 0.85rem;
+    }
+  }
 </style>
