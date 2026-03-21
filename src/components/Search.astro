@@ -1,10 +1,21 @@
 ---
+import { getCollection } from 'astro:content';
+
 const normalizedBaseUrl = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
+
+const posts = await getCollection('blog');
+const tags = [...new Set(posts.flatMap((post) => post.data.tags || []))].sort();
 ---
 
 <site-search>
+  <div class="quick-tags">
+    <span class="quick-tags-label">Quick search:</span>
+    {tags.map(tag => (
+      <button class="quick-tag-btn" data-tag={tag}>{tag}</button>
+    ))}
+  </div>
   <div id="search" class="search-container"></div>
 </site-search>
 
@@ -18,9 +29,26 @@ const normalizedBaseUrl = import.meta.env.BASE_URL.endsWith('/')
       if (!target || target.dataset.initialized) return;
       target.dataset.initialized = "true";
 
+      let pagefindUI: any = null;
+
       const init = () => {
         if (window.PagefindUI) {
-          new window.PagefindUI({ element: "#search", showSubResults: true });
+          pagefindUI = new window.PagefindUI({ element: "#search", showSubResults: true });
+          
+          // Setup quick tags
+          const tagButtons = this.querySelectorAll('.quick-tag-btn');
+          tagButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+              const tag = (btn as HTMLElement).dataset.tag;
+              if (tag) {
+                const input = this.querySelector('.pagefind-ui__search-input') as HTMLInputElement;
+                if (input) {
+                  input.value = tag;
+                  input.dispatchEvent(new Event('input', { bubbles: true }));
+                }
+              }
+            });
+          });
         } else {
           setTimeout(init, 50);
         }
@@ -36,6 +64,32 @@ const normalizedBaseUrl = import.meta.env.BASE_URL.endsWith('/')
 </script>
 
 <style is:global>
+  .quick-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  .quick-tags-label {
+    font-size: 0.9rem;
+    color: rgb(var(--gray));
+    margin-right: 0.5rem;
+  }
+  .quick-tag-btn {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.6rem;
+    background-color: rgb(var(--gray-light));
+    color: rgb(var(--gray));
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  .quick-tag-btn:hover {
+    background-color: rgb(var(--accent));
+    color: white;
+  }
   .search-container {
     margin: 2rem 0;
     --pagefind-ui-scale: 1;

@@ -2,6 +2,7 @@
 title: 'Hello World'
 description: 'Starting my personal blog journey to document growth and share insights.'
 pubDate: '2026-03-21'
+tags: ['blogging', 'introduction', 'learning']
 ---
 
 Hello, world! This is my very first blog post.

@@ -2,6 +2,7 @@
 title: '你好，世界'
 description: '开启我的个人博客之旅，记录技术成长与生活点滴。'
 pubDate: '2026-03-21'
+tags: ['blogging', 'introduction', 'learning']
 ---
 
 你好，世界！这是我的第一篇博客。

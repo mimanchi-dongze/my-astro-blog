@@ -15,6 +15,8 @@ const posts = (await getCollection('blog'))
 	.sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 	);
+
+const tags = [...new Set(posts.flatMap((post) => post.data.tags || []))].sort();
 ---
 
 <!doctype html>
@@ -104,6 +106,47 @@ const posts = (await getCollection('blog'))
 				box-shadow: var(--box-shadow);
 				transform: translateY(-4px);
 			}
+			.tags {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.5rem;
+				margin-top: 0.5rem;
+			}
+			.tag {
+				font-size: 0.8rem;
+				padding: 0.2rem 0.6rem;
+				background-color: rgb(var(--gray-light));
+				color: rgb(var(--gray));
+				border-radius: 999px;
+				transition: background-color 0.2s ease, color 0.2s ease;
+			}
+			ul li a:hover .tag {
+				background-color: rgb(var(--accent));
+				color: white;
+			}
+			.filter-bar {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.5rem;
+				margin-bottom: 2rem;
+				padding-bottom: 1rem;
+				border-bottom: 1px solid rgb(var(--gray-light));
+			}
+			.filter-btn {
+				font-size: 0.9rem;
+				padding: 0.4rem 1rem;
+				background-color: transparent;
+				border: 1px solid rgb(var(--gray-light));
+				color: rgb(var(--gray));
+				border-radius: 999px;
+				cursor: pointer;
+				transition: all 0.2s ease;
+			}
+			.filter-btn:hover, .filter-btn.active {
+				background-color: rgb(var(--accent));
+				color: white;
+				border-color: rgb(var(--accent));
+			}
 			@media (max-width: 720px) {
 				ul {
 					grid-template-columns: 1fr;
@@ -129,12 +172,18 @@ const posts = (await getCollection('blog'))
 		<Header />
 		<main>
 			<section>
+				<div class="filter-bar" id="tag-filter">
+					<button class="filter-btn active" data-tag="all">All</button>
+					{tags.map(tag => (
+						<button class="filter-btn" data-tag={tag}>{tag}</button>
+					))}
+				</div>
 				<ul>
 				{
 					posts.map((post) => {
 						const slug = post.id.slice(lang.length + 1);
 						return (
-							<li>
+							<li class="post-item" data-tags={(post.data.tags || []).join(',')}>
 								<a href={translatePath(`/blog/${slug}/`)}>
 									{post.data.heroImage && (
 										<Image width={720} height={360} src={post.data.heroImage} alt="" />
@@ -144,6 +193,13 @@ const posts = (await getCollection('blog'))
 										<p class="date">
 											<FormattedDate date={post.data.pubDate} />
 										</p>
+										{post.data.tags && post.data.tags.length > 0 && (
+											<div class="tags">
+												{post.data.tags.map((tag: string) => (
+													<span class="tag" data-tag={tag}>{tag}</span>
+												))}
+											</div>
+										)}
 									</div>
 								</a>
 							</li>
@@ -154,5 +210,53 @@ const posts = (await getCollection('blog'))
 			</section>
 		</main>
 		<Footer />
+		<script>
+			function initTagFilter() {
+				const filterBar = document.getElementById('tag-filter');
+				if (!filterBar || filterBar.dataset.initialized) return;
+				filterBar.dataset.initialized = 'true';
+
+				const buttons = filterBar.querySelectorAll('.filter-btn');
+				const posts = document.querySelectorAll('.post-item');
+				const postTags = document.querySelectorAll('.post-item .tag');
+
+				function filterByTag(selectedTag: string | undefined) {
+					buttons.forEach(b => b.classList.remove('active'));
+					const activeBtn = Array.from(buttons).find(b => (b as HTMLElement).dataset.tag === selectedTag);
+					if (activeBtn) activeBtn.classList.add('active');
+
+					posts.forEach(post => {
+						const postEl = post as HTMLElement;
+						if (!selectedTag || selectedTag === 'all') {
+							postEl.style.display = '';
+						} else {
+							const tags = postEl.dataset.tags?.split(',') || [];
+							if (tags.includes(selectedTag)) {
+								postEl.style.display = '';
+							} else {
+								postEl.style.display = 'none';
+							}
+						}
+					});
+				}
+
+				buttons.forEach(btn => {
+					btn.addEventListener('click', () => {
+						filterByTag((btn as HTMLElement).dataset.tag);
+					});
+				});
+
+				postTags.forEach(tag => {
+					tag.addEventListener('click', (e) => {
+						e.preventDefault();
+						filterByTag((tag as HTMLElement).dataset.tag);
+						// Scroll to filter bar smoothly
+						filterBar.scrollIntoView({ behavior: 'smooth', block: 'start' });
+					});
+				});
+			}
+
+			document.addEventListener('astro:page-load', initTagFilter);
+		</script>
 	</body>
 </html>

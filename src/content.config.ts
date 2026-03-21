@@ -7,14 +7,17 @@ const blog = defineCollection({
 	loader: glob({ base: './src/content/blog', pattern: '**/*.{md,mdx}' }),
 	// Type-check frontmatter using a schema
 	schema: ({ image }) =>
-		z.object({
-			title: z.string(),
-			description: z.string(),
-			// Transform string to Date object
-			pubDate: z.coerce.date(),
-			updatedDate: z.coerce.date().optional(),
-			heroImage: z.optional(image()),
-		}),
+		z
+			.object({
+				title: z.string(),
+				description: z.string(),
+				// Transform string to Date object
+				pubDate: z.coerce.date(),
+				updatedDate: z.coerce.date().optional(),
+				heroImage: z.optional(image()),
+				tags: z.array(z.string().regex(/^[a-z0-9-]+$/)).default([]),
+			})
+			.strict(),
 });
 
 export const collections = { blog };

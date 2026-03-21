@@ -2,6 +2,7 @@
 title: '首个版本发布回顾'
 description: '回顾博客首个版本的开发过程，总结经验与不足。'
 pubDate: '2026-03-21'
+tags: ['astro', 'i18n', 'retrospective', 'performance']
 ---
 
 博客的首个版本今天正式上线了。

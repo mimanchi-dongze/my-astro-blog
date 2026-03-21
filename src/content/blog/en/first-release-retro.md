@@ -2,6 +2,7 @@
 title: 'First Release Retro'
 description: 'Reviewing the development process of the first blog version, summarizing lessons learned.'
 pubDate: '2026-03-21'
+tags: ['astro', 'i18n', 'retrospective', 'performance']
 ---
 
 The first version of the blog is officially live today.

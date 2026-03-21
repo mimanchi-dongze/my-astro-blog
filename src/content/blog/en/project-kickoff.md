@@ -2,6 +2,7 @@
 title: 'Project Kickoff: My Personal Blog'
 description: 'Why I chose Astro for my personal blog and my technical decision-making process.'
 pubDate: '2026-03-21'
+tags: ['astro', 'planning', 'blogging']
 ---
 
 Today, my personal blog project officially kicks off.
