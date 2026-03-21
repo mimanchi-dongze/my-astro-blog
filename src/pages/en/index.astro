@@ -1,8 +1,15 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+
+const posts = (await getCollection('blog'))
+	.filter((post) => post.id.startsWith('en/'))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 3);
 ---
 
 <!doctype html>
@@ -14,9 +21,9 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 		<Header />
 		<main>
 			<section class="hero">
-				<p class="eyebrow">Dongze's Blog</p>
+				<p class="eyebrow">DONGZE'S BLOG</p>
 				<h1>Hi, I'm DongZe 👋</h1>
-				<p class="intro">I'm a student developer from Chongqing, documenting hands-on work and notes in computer vision, time series, and VibeCoding.</p>
+				<p class="intro">Student developer from Chongqing, sharing reproducible practice in computer vision, time series, and VibeCoding.</p>
 				<div class="cta-group">
 					<a class="btn primary" href="blog/">Read posts</a>
 					<a class="btn" href="about/">About me</a>
@@ -38,6 +45,26 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 					<p>AI-assisted coding workflows, toolchains, and rapid idea-to-shipping practice.</p>
 				</article>
 			</section>
+
+			<section class="latest">
+				<div class="latest-head">
+					<h2>Latest Posts</h2>
+					<a href="blog/">View all</a>
+				</div>
+				<ul>
+					{posts.map((post) => {
+						const slug = post.id.slice('en/'.length);
+						return (
+							<li>
+								<a class="post-link" href={`blog/${slug}/`}>
+									<h3>{post.data.title}</h3>
+									<p class="meta"><FormattedDate date={post.data.pubDate} /></p>
+								</a>
+							</li>
+						);
+					})}
+				</ul>
+			</section>
 		</main>
 		<Footer />
 	</body>
@@ -45,23 +72,23 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 
 <style>
 	main {
-		max-width: 960px;
+		max-width: 980px;
 		margin: 0 auto;
-		padding: 2.5rem 1rem 3.5rem;
+		padding: 2rem 1rem 3.5rem;
 	}
 
 	.hero {
-		padding: 2rem;
-		border-radius: 18px;
-		background: linear-gradient(135deg, rgba(var(--gray-light), 0.45), rgba(var(--gray-light), 0.2));
-		border: 1px solid rgba(var(--gray), 0.25);
+		padding: 2.1rem;
+		border-radius: 16px;
+		background: rgb(var(--gray-light) / 24%);
+		border: 1px solid rgb(var(--gray-light));
 	}
 
 	.eyebrow {
 		margin: 0;
-		letter-spacing: 0.08em;
+		letter-spacing: 0.12em;
 		text-transform: uppercase;
-		font-size: 0.78rem;
+		font-size: 0.74rem;
 		color: rgb(var(--gray));
 	}
 
@@ -72,8 +99,9 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 
 	.intro {
 		margin: 0;
-		max-width: 52ch;
-		font-size: 1.05rem;
+		max-width: 58ch;
+		font-size: 1rem;
+		line-height: 1.65;
 	}
 
 	.cta-group {
@@ -85,9 +113,9 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 
 	.btn {
 		display: inline-block;
-		padding: 0.58rem 0.95rem;
+		padding: 0.56rem 0.92rem;
 		border: 1px solid rgba(var(--gray), 0.45);
-		border-radius: 10px;
+		border-radius: 9px;
 		text-decoration: none;
 		color: rgb(var(--gray-dark));
 		font-weight: 600;
@@ -102,15 +130,73 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 	.focus-grid {
 		display: grid;
 		grid-template-columns: repeat(3, minmax(0, 1fr));
-		gap: 0.9rem;
-		margin-top: 1.2rem;
+		gap: 0.85rem;
+		margin-top: 1rem;
 	}
 
 	.focus-grid article {
 		padding: 1rem;
-		border: 1px solid rgba(var(--gray), 0.3);
+		border: 1px solid rgb(var(--gray-light));
 		border-radius: 12px;
-		background: rgba(var(--gray-light), 0.35);
+		background: white;
+	}
+
+	.latest {
+		margin-top: 1.2rem;
+		border: 1px solid rgb(var(--gray-light));
+		border-radius: 12px;
+		padding: 1rem;
+		background: white;
+	}
+
+	.latest-head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		margin-bottom: 0.6rem;
+	}
+
+	.latest-head h2 {
+		margin: 0;
+		font-size: 1.1rem;
+	}
+
+	.latest-head a {
+		font-size: 0.9rem;
+		text-decoration: none;
+	}
+
+	.latest ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: 0.45rem;
+	}
+
+	.post-link {
+		display: block;
+		padding: 0.7rem 0.75rem;
+		border-radius: 10px;
+		text-decoration: none;
+		border: 1px solid transparent;
+	}
+
+	.post-link:hover {
+		border-color: rgb(var(--gray-light));
+		background: rgb(var(--gray-light) / 24%);
+	}
+
+	.post-link h3 {
+		margin: 0;
+		font-size: 1rem;
+	}
+
+	.meta {
+		margin: 0.28rem 0 0;
+		font-size: 0.84rem;
+		color: rgb(var(--gray));
 	}
 
 	.focus-grid h2 {
