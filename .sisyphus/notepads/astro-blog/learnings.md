@@ -1,7 +1,0 @@
-- 2026-03-21: Set npm local cache via `.npmrc` with `cache=.npm-cache` before any create/install commands so package cache stays inside project.
-- 2026-03-21: When root is non-empty, scaffold Astro blog into `temp-blog` and copy `temp-blog/.` to preserve hidden template files like `.gitignore`.
-- 2026-03-21: For GitHub Pages, keep Astro `site` set to repository Pages URL format (`https://your-username.github.io`) and deploy `dist/` as the Pages artifact.
-- 2026-03-21: Blog identity lives in `src/consts.ts`; adding a new post under `src/content/blog/` with `title`, `description`, and `pubDate` frontmatter is enough for Astro to include it in build and routing.
-- 2026-03-21: High-ROI upgrades for this setup are static-friendly features (Pagefind search, CSS variable theme toggle, build-time reading metadata, structured data, and optional Giscus) that preserve GitHub Pages compatibility.
-- Astro Content Collections are used with a directory-based i18n structure (src/content/blog/zh-cn/ and src/content/blog/en/).
-- Images in src/assets/ require relative paths from the content file (e.g., ../../../assets/).

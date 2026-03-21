@@ -1,6 +1,0 @@
-- 2026-03-21: Used official `npm create astro@latest ... --template blog --no-install --no-git --yes` in a temporary directory because repository root already contained `.sisyphus` and other files.
-- 2026-03-21: Verified setup with `npm run build` after dependency install as final acceptance check.
-- 2026-03-21: Adopted a GitHub Pages workflow with build and deploy jobs using `actions/upload-pages-artifact` and `actions/deploy-pages`, triggered on pushes to `main` and `master`.
-- 2026-03-21: Prioritized feature roadmap by ROI for a static i18n Astro blog: 1) search, 2) theme system, 3) TOC + reading time, 4) JSON-LD + analytics, 5) comments.
-- Created HOW_TO_WRITE_POSTS.md in the root directory to provide clear instructions for the user in Chinese.
-- Recommended using src/assets/ for images to leverage Astro's image optimization.
