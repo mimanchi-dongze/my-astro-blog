@@ -1,0 +1,1 @@
+- 2026-03-21: Dependency vulnerabilities remain unresolved pending targeted `npm audit` review and potential package upgrades.

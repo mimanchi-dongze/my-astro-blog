@@ -1,0 +1,2 @@
+- 2026-03-21: `npm install` reported 2 dependency vulnerabilities (1 moderate, 1 high) from upstream dependency graph; project build still succeeds.
+- 2026-03-21: LSP reports multiple Astro/Biome warnings in template files (unused imports/variables), but zero errors.
