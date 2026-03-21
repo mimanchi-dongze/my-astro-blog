@@ -1,11 +1,17 @@
 ---
 title: 'Hello World'
-description: 'My first blog post on this personal Astro blog.'
+description: 'Starting my personal blog journey to document growth and share insights.'
 pubDate: '2026-03-21'
 ---
 
-Welcome to my first post!
+Hello, world! This is my very first blog post.
 
-I built this blog with Astro and this article is a sample entry to get things started.
+I'm Dongze, a developer. I started this blog with a simple goal: to document what I learn, share my thoughts, and improve along the way.
 
-I will share notes, ideas, and experiments here as I keep learning.
+Here, you'll find:
+- Deep technical notes
+- Practical project experiences
+- Reflections on learning new tech
+- Occasional personal essays
+
+Thanks for stopping by. I look forward to connecting with like-minded people here.
