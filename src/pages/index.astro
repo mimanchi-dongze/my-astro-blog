@@ -6,31 +6,129 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="zh-cn">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
 	<body>
 		<Header />
 		<main>
-			<h1>你好，我是 Dongze 👋</h1>
-			<p>
-				这是我的个人博客，我会在这里记录项目实践、技术学习和一些长期思考。
-			</p>
-			<p>
-				如果你是第一次来，建议先看 <a href="about/">关于页面</a>；
-				如果你更关注内容，可以直接进入 <a href="blog/">博客列表</a>。
-			</p>
-			<p>这个博客当前主要会覆盖：</p>
-			<ul>
-				<li>Astro 与静态站点工程化实践</li>
-				<li>全栈开发中的问题排查与复盘</li>
-				<li>学习方法与长期成长记录</li>
-			</ul>
-			<p>
-				也可以通过右上角的语言切换查看英文内容，或前往 <a href="search/">搜索页</a> 快速检索文章。
-			</p>
+			<section class="hero">
+				<p class="eyebrow">Dongze's Blog</p>
+				<h1>你好，我是 Dongze 👋</h1>
+				<p class="intro">这是我的数字笔记本，记录工程实践、项目复盘和长期学习。</p>
+				<div class="cta-group">
+					<a class="btn primary" href="blog/">阅读博客</a>
+					<a class="btn" href="about/">了解我</a>
+					<a class="btn" href="search/">搜索文章</a>
+				</div>
+			</section>
+
+			<section class="focus-grid">
+				<article>
+					<h2>工程实践</h2>
+					<p>从 Astro 到部署细节，记录可复用的落地经验。</p>
+				</article>
+				<article>
+					<h2>问题排查</h2>
+					<p>沉淀踩坑与修复路径，形成可追溯的复盘文档。</p>
+				</article>
+				<article>
+					<h2>长期学习</h2>
+					<p>持续输出学习方法、思考框架和成长记录。</p>
+				</article>
+			</section>
 		</main>
 		<Footer />
 	</body>
 </html>
+
+<style>
+	main {
+		max-width: 960px;
+		margin: 0 auto;
+		padding: 2.5rem 1rem 3.5rem;
+	}
+
+	.hero {
+		padding: 2rem;
+		border-radius: 18px;
+		background: linear-gradient(135deg, rgba(var(--gray-light), 0.45), rgba(var(--gray-light), 0.2));
+		border: 1px solid rgba(var(--gray), 0.25);
+	}
+
+	.eyebrow {
+		margin: 0;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		font-size: 0.78rem;
+		color: rgb(var(--gray));
+	}
+
+	h1 {
+		margin: 0.6rem 0 0.9rem;
+		font-size: clamp(2rem, 4vw, 2.7rem);
+	}
+
+	.intro {
+		margin: 0;
+		max-width: 52ch;
+		font-size: 1.05rem;
+	}
+
+	.cta-group {
+		display: flex;
+		gap: 0.75rem;
+		flex-wrap: wrap;
+		margin-top: 1.4rem;
+	}
+
+	.btn {
+		display: inline-block;
+		padding: 0.58rem 0.95rem;
+		border: 1px solid rgba(var(--gray), 0.45);
+		border-radius: 10px;
+		text-decoration: none;
+		color: rgb(var(--gray-dark));
+		font-weight: 600;
+	}
+
+	.btn.primary {
+		background: var(--accent);
+		border-color: var(--accent);
+		color: white;
+	}
+
+	.focus-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 0.9rem;
+		margin-top: 1.2rem;
+	}
+
+	.focus-grid article {
+		padding: 1rem;
+		border: 1px solid rgba(var(--gray), 0.3);
+		border-radius: 12px;
+		background: rgba(var(--gray-light), 0.35);
+	}
+
+	.focus-grid h2 {
+		margin: 0;
+		font-size: 1.05rem;
+	}
+
+	.focus-grid p {
+		margin: 0.6rem 0 0;
+	}
+
+	@media (max-width: 780px) {
+		.focus-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.hero {
+			padding: 1.4rem;
+		}
+	}
+</style>

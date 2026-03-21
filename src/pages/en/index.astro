@@ -13,24 +13,122 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 	<body>
 		<Header />
 		<main>
-			<h1>Hi, I'm Dongze 👋</h1>
-			<p>
-				Welcome to my personal blog. I share project notes, engineering lessons, and long-term reflections here.
-			</p>
-			<p>
-				If you're new here, start with the <a href="about/">about page</a>, or jump directly to the
-				<a href="blog/">blog posts</a>.
-			</p>
-			<p>Topics I currently focus on:</p>
-			<ul>
-				<li>Astro and static-site engineering practices</li>
-				<li>Debugging stories and project retrospectives</li>
-				<li>Learning systems and long-term growth</li>
-			</ul>
-			<p>
-				You can also use the <a href="search/">search page</a> to quickly find articles.
-			</p>
+			<section class="hero">
+				<p class="eyebrow">Dongze's Blog</p>
+				<h1>Hi, I'm Dongze 👋</h1>
+				<p class="intro">This is my digital notebook for engineering practice, retrospectives, and long-term learning.</p>
+				<div class="cta-group">
+					<a class="btn primary" href="blog/">Read posts</a>
+					<a class="btn" href="about/">About me</a>
+					<a class="btn" href="search/">Search</a>
+				</div>
+			</section>
+
+			<section class="focus-grid">
+				<article>
+					<h2>Engineering practice</h2>
+					<p>Practical notes from Astro projects to production deployment details.</p>
+				</article>
+				<article>
+					<h2>Debugging stories</h2>
+					<p>Issue investigations, root causes, and fixes I can reuse later.</p>
+				</article>
+				<article>
+					<h2>Long-term learning</h2>
+					<p>Methods, reflections, and systemized growth in public.</p>
+				</article>
+			</section>
 		</main>
 		<Footer />
 	</body>
 </html>
+
+<style>
+	main {
+		max-width: 960px;
+		margin: 0 auto;
+		padding: 2.5rem 1rem 3.5rem;
+	}
+
+	.hero {
+		padding: 2rem;
+		border-radius: 18px;
+		background: linear-gradient(135deg, rgba(var(--gray-light), 0.45), rgba(var(--gray-light), 0.2));
+		border: 1px solid rgba(var(--gray), 0.25);
+	}
+
+	.eyebrow {
+		margin: 0;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		font-size: 0.78rem;
+		color: rgb(var(--gray));
+	}
+
+	h1 {
+		margin: 0.6rem 0 0.9rem;
+		font-size: clamp(2rem, 4vw, 2.7rem);
+	}
+
+	.intro {
+		margin: 0;
+		max-width: 52ch;
+		font-size: 1.05rem;
+	}
+
+	.cta-group {
+		display: flex;
+		gap: 0.75rem;
+		flex-wrap: wrap;
+		margin-top: 1.4rem;
+	}
+
+	.btn {
+		display: inline-block;
+		padding: 0.58rem 0.95rem;
+		border: 1px solid rgba(var(--gray), 0.45);
+		border-radius: 10px;
+		text-decoration: none;
+		color: rgb(var(--gray-dark));
+		font-weight: 600;
+	}
+
+	.btn.primary {
+		background: var(--accent);
+		border-color: var(--accent);
+		color: white;
+	}
+
+	.focus-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 0.9rem;
+		margin-top: 1.2rem;
+	}
+
+	.focus-grid article {
+		padding: 1rem;
+		border: 1px solid rgba(var(--gray), 0.3);
+		border-radius: 12px;
+		background: rgba(var(--gray-light), 0.35);
+	}
+
+	.focus-grid h2 {
+		margin: 0;
+		font-size: 1.05rem;
+	}
+
+	.focus-grid p {
+		margin: 0.6rem 0 0;
+	}
+
+	@media (max-width: 780px) {
+		.focus-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.hero {
+			padding: 1.4rem;
+		}
+	}
+</style>

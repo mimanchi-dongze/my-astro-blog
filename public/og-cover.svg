@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Dongze's Blog cover image">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="55%" stop-color="#1f3a8a" />
+      <stop offset="100%" stop-color="#0ea5e9" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <circle cx="1040" cy="120" r="180" fill="#ffffff" opacity="0.08" />
+  <circle cx="120" cy="560" r="210" fill="#ffffff" opacity="0.08" />
+  <text x="80" y="255" fill="#f8fafc" font-size="78" font-family="Segoe UI, Arial, sans-serif" font-weight="700">
+    Dongze's Blog
+  </text>
+  <text x="80" y="325" fill="#e2e8f0" font-size="38" font-family="Segoe UI, Arial, sans-serif">
+    Engineering notes, project retros, and lifelong learning
+  </text>
+  <text x="80" y="560" fill="#cbd5e1" font-size="30" font-family="Segoe UI, Arial, sans-serif">
+    mimanchi-dongze.github.io/my-astro-blog
+  </text>
+</svg>

@@ -4,8 +4,7 @@
 import '../styles/global.css';
 import { ClientRouter } from 'astro:transitions';
 import type { ImageMetadata } from 'astro';
-import FallbackImage from '../assets/blog-placeholder-1.jpg';
-import { SITE_TITLE } from '../consts';
+import { SITE_AUTHOR, SITE_KEYWORDS, SITE_TITLE } from '../consts';
 
 interface Props {
 	title: string;
@@ -14,18 +13,23 @@ interface Props {
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const siteBaseURL = new URL(import.meta.env.BASE_URL, Astro.site);
 const normalizedBaseUrl = import.meta.env.BASE_URL.endsWith('/')
 	? import.meta.env.BASE_URL
 	: `${import.meta.env.BASE_URL}/`;
 
-const { title, description, image = FallbackImage } = Astro.props;
+const { title, description, image } = Astro.props;
 
 const websiteSchema = {
 	"@context": "https://schema.org",
 	"@type": "WebSite",
-	"url": Astro.site?.toString(),
+	"url": siteBaseURL.toString(),
 	"name": SITE_TITLE,
 };
+
+const imageURL = image
+	? new URL(image.src, Astro.url)
+	: new URL(`${normalizedBaseUrl}og-cover.svg`, Astro.site);
 ---
 
 <!-- Global Metadata -->
@@ -53,20 +57,22 @@ const websiteSchema = {
 <title>{title}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
+<meta name="author" content={SITE_AUTHOR} />
+<meta name="keywords" content={SITE_KEYWORDS.join(', ')} />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image.src, Astro.url)} />
+<meta property="og:image" content={imageURL} />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content={Astro.url} />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image.src, Astro.url)} />
+<meta property="twitter:image" content={imageURL} />
 
 <!-- View Transitions -->
 <ClientRouter fallback="swap" />

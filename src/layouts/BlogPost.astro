@@ -7,7 +7,7 @@ import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import Giscus from '../components/Giscus.astro';
 import { getLangFromUrl } from '../i18n/utils';
-import { SITE_TITLE } from '../consts';
+import { SITE_AUTHOR } from '../consts';
 
 type Props = CollectionEntry<'blog'>['data'] & {
 	headings?: { depth: number; slug: string; text: string }[];
@@ -27,7 +27,7 @@ const blogPostingSchema = {
 	"dateModified": updatedDate ? updatedDate.toISOString() : undefined,
 	"author": {
 		"@type": "Person",
-		"name": SITE_TITLE
+		"name": SITE_AUTHOR
 	}
 };
 ---
