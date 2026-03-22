@@ -46,6 +46,9 @@ const imageURL = image
 />
 <meta name="generator" content={Astro.generator} />
 
+<!-- KaTeX CSS for math rendering -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+
 <!-- Font preloads -->
 <link rel="preload" href={`${normalizedBaseUrl}fonts/atkinson-regular.woff`} as="font" type="font/woff" crossorigin />
 <link rel="preload" href={`${normalizedBaseUrl}fonts/atkinson-bold.woff`} as="font" type="font/woff" crossorigin />
