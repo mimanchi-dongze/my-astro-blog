@@ -1,7 +1,7 @@
 ---
 title: "理解通配符 % 与 _ 的用法"
 description: "想在数据库中进行高效的模糊字符串匹配？本文详细讲解 SQL 中 LIKE 谓词及通配符 % 和 _ 的用法，并提供丰富的实战例题带你彻底掌握。"
-publishedAt: "2026-03-23T11:22:32"
+publishedAt: "2026-03-23T11:22:32+08:00"
 pubDate: "2026-03-23"
 heroImage: ""
 tags: ["sql", "database", "wildcards", "tutorial"]
